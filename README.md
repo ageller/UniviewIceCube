@@ -1,2 +1,2 @@
-# iceCubeTest
-testing the IceCube codes, and converting to python3
+# IceCubeTest
+Testing the IceCube codes, and converting to python3
