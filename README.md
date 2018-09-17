@@ -1,2 +1,3 @@
-# IceCubeTest
-Testing the IceCube codes, and converting to python3
+# UniviewIceCube
+
+Uniview module for IceCube event 170922A
