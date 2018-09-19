@@ -2,6 +2,8 @@ uniform float uv_fade;
 
 uniform sampler2D cmap;
 uniform float eventTime;
+uniform float tfac;
+uniform float tmax;
 
 in vec2 texcoord;
 in float time;
@@ -10,9 +12,8 @@ out vec4 fragColor;
 
 void main()
 {
-	float tfac = 50.; //larger number means less points show per time
-	vec3 color = texture(cmap ,vec2(clamp(time/11800.,0.,0.99),0.5)).rgb;
-	float alpha = 1. - clamp(abs(eventTime - time)/11800.*tfac, 0., 1.);
+	vec3 color = texture(cmap ,vec2(clamp(time/tmax,0.,0.99),0.5)).rgb;
+	float alpha = 1. - clamp(abs(eventTime - time)/tmax*tfac, 0., 1.);
 
     fragColor = vec4(color, alpha);
     fragColor.a *= uv_fade;
