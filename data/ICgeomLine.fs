@@ -1,12 +1,12 @@
 uniform float uv_fade;
 
 in vec2 texcoord;
-in vec3 color;
+uniform vec4 lineColor;
 
 out vec4 fragColor;
 
 void main()
 {
-	fragColor = vec4(color, 1.);
+	fragColor = lineColor;
 	fragColor.a *= uv_fade;
 }
