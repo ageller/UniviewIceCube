@@ -1,9 +1,12 @@
 uniform float uv_fade;
 
+uniform sampler2D stateTexture;
+
 uniform sampler2D cmap;
-uniform float eventTime;
+//uniform float eventTime;
 uniform float tfac;
 uniform float tmax;
+uniform bool buildUp;
 
 in vec2 texcoord;
 in float time;
@@ -12,8 +15,14 @@ out vec4 fragColor;
 
 void main()
 {
+
+	float eventTime = texture(stateTexture, vec2(0.5)).r;
+	
 	vec3 color = texture(cmap ,vec2(clamp(time/tmax,0.,0.99),0.5)).rgb;
 	float alpha = 1. - clamp(abs(eventTime - time)/tmax*tfac, 0., 1.);
+	if (buildUp && time <= eventTime){
+		alpha = 1.;
+	}
 
     fragColor = vec4(color, alpha);
     fragColor.a *= uv_fade;
